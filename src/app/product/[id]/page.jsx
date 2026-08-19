@@ -12,6 +12,17 @@ import { useFetchAllProcedureQuery } from "@/redux/feature/procedure/procedure";
 import Link from "next/link";
 import { toast } from "sonner";
 
+const formatDescription = (desc) => {
+  if (!desc) return "";
+  if (!/<[a-z][\s\S]*>/i.test(desc)) {
+    return desc
+      .split(/\r?\n\r?\n/)
+      .map((para) => `<p class="mb-3">${para.replace(/\r?\n/g, '<br />')}</p>`)
+      .join("");
+  }
+  return desc;
+};
+
 const ProductDetails = () => {
   const params = useParams();
   const navigate = useRouter();
@@ -199,7 +210,10 @@ const ProductDetails = () => {
                   {product.availability}
                 </span>
               </p>
-              <p className="text-[#9F9C96] text-base">{product.description}</p>
+              <div
+                className="text-[#9F9C96] text-base space-y-2 [&_ul]:list-disc [&_ul]:ml-5 [&_ol]:list-decimal [&_ol]:ml-5 [&_p]:mb-2"
+                dangerouslySetInnerHTML={{ __html: formatDescription(product.description) }}
+              />
 
               <div className="space-y-1 text-base">
                 <p className="text-black">

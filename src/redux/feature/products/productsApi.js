@@ -70,6 +70,7 @@ const productsApi = createApi({
         }
         queryParams.append("page", params.page || 1);
         queryParams.append("limit", params.limit || 10);
+        queryParams.append("isPublished", "true");
 
         const queryString = queryParams.toString();
         return queryString ? `/?${queryString}` : "/";
@@ -77,7 +78,7 @@ const productsApi = createApi({
       providesTags: ["Products"],
     }),
 
-  
+
 
     // Option 2: If you specifically need /byid/:productId format
     fetchProductByProductId: builder.query({

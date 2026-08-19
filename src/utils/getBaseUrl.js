@@ -1,8 +1,6 @@
 
 
 export const getBaseUrl = () => {
-  return 'https://api.rnadental.co.uk';
-  // return 'http://10.10.20.22:5050';
-  
+  return process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5050';
 };
 
