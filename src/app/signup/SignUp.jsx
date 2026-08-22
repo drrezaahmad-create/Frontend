@@ -13,7 +13,6 @@ export default function SignUp() {
     lastName: "",
     email: "",
     password: "",
-    password: "",
     gdcNo: "",
   });
   const [showPassword, setShowPassword] = useState(false);
@@ -58,7 +57,7 @@ export default function SignUp() {
       data.append("password", formData.password);
 
       if (formData.gdcNo) {
-        data.append("gdcNo", formData.gdcNo);
+        data.append("gdcNumber", formData.gdcNo);
       }
 
       if (profileImage) {
